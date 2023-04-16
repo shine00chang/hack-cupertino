@@ -1,5 +1,6 @@
 <script>
     import TeamPic from "$lib/imgs/teampic.jpeg";
+    import ShinePolice from "$lib/imgs/shinepolice.gif";
 </script>
 
 <div class="flex flex-row justify-center mt-10">
@@ -11,16 +12,36 @@
         <p>
             {"Team Gradient: Daniel Cui, Bhargav Eranki, Shine Chang, Taisei De La Cruz"}
         </p>
-        <p>
-            {"\"I'm a kitten! kawaii!!!!\" - Bhargav"}
-        </p>
+        <div id="shinebhar">
+            <img src={ShinePolice} alt="shine flashing police gif"/>
+            <p>
+                {"\"I'm a kitten! kawaii!!!!\" - Bhargav"}
+            </p>
+        </div>
     </div>
-
+    <div class="print-show">
+        <p>We were hired by HP to waste your ink</p>
+    </div>
 </div>
 
 
 <style>
+    .print-show {
+        display: none;
+    }
     #container {
         width: 40rem;
+    }
+    #shinebhar {
+        text-align: center;
+        margin: auto;
+    }
+    #shinebhar img {
+        margin: auto;
+    }
+    @media print {
+        .print-show {
+            display: block;
+        }
     }
 </style>
