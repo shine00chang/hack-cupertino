@@ -12,7 +12,8 @@ app.get("/test", (req, res) => {
 });
 
 app.post('/image', async (req, res) => {
-  //req.body.image should be b64 image or something
+  if (!req.body.image) return res.status(500).send();
+
   let image_url = controller.uploadImage(req.body.image);
   return !image_url ? res.status(500).send() : res.status(200).json({"image_url": image_url});
 });
