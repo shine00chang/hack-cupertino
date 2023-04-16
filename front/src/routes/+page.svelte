@@ -14,9 +14,38 @@
       });
     }
   })
+
+  const reportHandler = (e) => {
+
+  };
 </script>
 
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+
+<div class="flex flex-row justify-center my-10">
+  <form on:submit|preventDefault={reportHandler} class="flex flex-col w-96 border rounded p-5 gap-4">
+
+    <label for="title">Title:
+      <input name="title" type="text" value="" class="border rounded-sm"/>
+    </label>
+
+    <div class="row row-col">
+      <label for="desc" class="block">Description:</label>
+      <textarea name="desc" type="text" value="" class="border rounded-sm w-full"/>
+    </div>
+
+    <div>
+      <label for="categories">Categories:</label>
+      <select name="categories">
+        <option value="">Assault and Pepper</option>
+        <option value="">Sexual Assault</option>
+        <option value="">Armed Assault</option>
+        <option value="">Amber Alert Sighting</option>
+        <option value="">Burglary</option>
+      </select>
+    </div>
+
+    <button type="submit">Report</button>
+  </form>
+</div>
+
   
