@@ -21,16 +21,15 @@ app.post('/image', async (req, res) => {
 });
 
 app.post("/upload", async (req, res) => {
-  console.log("upload request received");
+  console.log("upload request.");
   const success = await controller.upload(req.body);
   return res.status(success ? 201 : 406).send(); 
 });
 
 app.get("/by-location", async (req, res) => {
-  console.log("get by location requested, still dummy tho.");
-  const location = { lat: 32, lon: -121};
-  let _results = await controller.getByLocation(location);
-  return res.json({"compton": "average gang violence"});
+  console.log("get by location requested.");
+  let results = await controller.getByLocation(req.query);
+  return results === false ? res.status(400).send() : res.json(results);
 });
 
 app.listen(3000, () => {
