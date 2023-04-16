@@ -36,6 +36,9 @@ export async function get_img_url(file, cb = () => {}) {
 export async function post_incident(incident_info) {
   await fetch(BACKEND_URL+"/upload", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(incident_info)
   });
 }
