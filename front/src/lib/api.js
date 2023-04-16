@@ -3,7 +3,7 @@ const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
 
 export async function fetch_incidents (location) {
   console.log("Fetching from location: ", location);
-  return await fetch(BACKEND_URL+`/byLocation?longitude=${location.longitude}&latitude=${location.latitude}`)
+  return await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}`)
     .then(res => res.json())
     .then(res => {
       console.log("by location fetch: ", res);
@@ -15,7 +15,7 @@ export async function fetch_incidents (location) {
     });
 }
 
-export async function get_img_url(file, cb = () => {}) {
+export function get_img_url(file, cb = () => {}) {
   let file_reader = new FileReader();
   file_reader.readAsDataURL(file);
   file_reader.onload = async () => {    //call image uploading api

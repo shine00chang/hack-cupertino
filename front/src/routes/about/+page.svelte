@@ -12,6 +12,9 @@
         <p>
             {"Team Gradient: Daniel Cui, Bhargav Eranki, Shine Chang, Taisei De La Cruz"}
         </p>
+        <p>
+            {"We made this project with the goal of helping spread awareness of problems in communities, in a transparent way."}
+        </p>
         <div id="shinebhar">
             <img id="shine-img" src={ShinePolice} alt="shine flashing police gif"/>
             <p>

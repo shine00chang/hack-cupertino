@@ -17,6 +17,7 @@ require('dotenv').config();
 */
 
 function validateIncident(body) {
+  if (typeof body.title !== "string")       {console.error("no title"   ); return false;}
   if (typeof body.category !== "string")    {console.error("no category"); return false;}
   if (typeof body.img_url !== "string" && typeof body.img_url !== "undefined") {console.error("invalid img_url"); return false;}
   if (body.img_url === undefined) {
@@ -26,6 +27,7 @@ function validateIncident(body) {
   if (typeof body.timestamp !== "number")   {console.error("no timestamp"  ); return false;}
   if (typeof body.longitude !== "number" || typeof body.latitude !== "number") {console.error("no lat or lon");   return false;}
   return {
+    title: body.title,
     category: body.category,
     img_url:  body.img_url,
     description: body.description,
@@ -50,6 +52,7 @@ fetch("/upload", {
         "Content-Type": "application/json"
     },
     body: JSON.stringify({
+        title: "anthony :bigflush:",
         category: "gang violence",
         img_url: "https://stkittsvet.co.uk/wp-content/uploads/2013/11/senior-rabbit.jpg",
         description: "the wrong signs at the wrong hood :pensive:",

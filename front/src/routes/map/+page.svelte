@@ -1,33 +1,19 @@
 <script>
     import Map from "$lib/components/Map.svelte";
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
+    import {Accordion, AccordionItem} from "svelte-collapsible"
     import * as API from "$lib/api.js";
 
     let accidents = [];
-    let loaded = false;
-    let la = 37.3;
-    let ln = -122.03;
-
-    onMount(async() => {
-        //accidents = await API.fetch_incidents({longitude: ln, latitude: la});
-        
-        for (let i = 0; i < 10; i++) {
-            accidents.push({lat: la+Math.random()/10.0, lng: ln+Math.random()/10.0});
-        }
-
-        console.log(accidents);
-        loaded = true; 
+    onMount(async () => {
+      accidents = await API.fetch_incidents({latitude: 37, longitude: -121});
     });
-    
-
 </script>
 
 <head>
     <title>HTML div</title>
 </head>
 <body>
-    {#if loaded}
-
     <style>
         @media (max-width: 800px) {
           #hidden-mobile {
@@ -49,11 +35,7 @@
                         </div>
         {/each}
     </div>
-    <div style="width: 47vw; float:right; height:90vh; margin:1vw" id="expand-mobile">
-        <Map accidents={accidents}/>
+   <div style="width: 47vw; float:right; height:90vh; margin:1vw" id="expand-mobile">
+        <Map/>
     </div>
-
-    {:else}
-    <p>LOADING...prayge</p>
-    {/if}
 </body>
