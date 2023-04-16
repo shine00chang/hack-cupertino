@@ -1,4 +1,4 @@
-const { fetch } = require("node-fetch");
+const fetch = require("node-fetch");
 const firebase = require("./firebase.js");
 const db = firebase.database();
 const incidentsRef = db.ref('incidents');
@@ -6,13 +6,12 @@ require('dotenv').config();
 
 /*schema for uploads
 {
+  title: string,
   category: string,
   img_url: string?,
   description: string,
-  coords: {
-    longitude: number,
-    latitude: number
-  },
+  longitude: number,
+  latitude: number
   timestamp: number (unix timestamp)
 }
 */
@@ -109,20 +108,20 @@ exports.getByLocation = async (query) => {
 exports.uploadImage = async (image) => {
   let form_data = new URLSearchParams();
   form_data.append("image", image)
-  let resp 
-  try {
-    resp = await fetch("https://api.imgur.com/3/image", {
-    method: "POST",
-    header: {
-      Authorization: `Client-ID ${process.env.clientId}`
-    },
-    body: form_data
+  return await fetch("https://api.imgur.com/3/image", {
+      method: "POST",
+      headers: {
+        Authorization: `Client-ID ${process.env.clientId}`
+      },
+      body: form_data
+    })
+    .then(async res => {
+      res = await res.json();
+      console.log(res);
+      return res.data.link;
+    })
+    .catch(e => {
+      console.error(e);
+      return false;
     });
-    resp = await resp.json();
-    console.log(resp);
-    return resp.data.link;
-  } catch (e) {
-    console.log(e);
-    return false;
-  }
 }

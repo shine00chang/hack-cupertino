@@ -1,0 +1,33 @@
+{
+  "crimes": [
+    "assault",
+    "battery",
+    "corruption",
+    "sexual battery",
+    "sexual assault",
+    "extortion",
+    "robbery",
+    "burglary",
+    "vandalism",
+    "venting",
+    "arson",
+    "shoplifting",
+    "theft",
+    "motor vehicle theft",
+    "armed robbery",
+    "murder",
+    "homicide",
+    "speeding",
+    "running a red light",
+    "traffic violation",
+    "hit and run",
+    "assassination",
+    "terrorism",
+    "kidnapping",
+    "disturbing the peace",
+    "pickpocketing",
+    "drug trafficking",
+    "police brutality",
+    "other"
+  ]
+}
