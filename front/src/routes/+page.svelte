@@ -3,6 +3,7 @@
   import crimes from "$lib/crime.json";
 
   import * as API from "$lib/api.js";
+  import { goto } from "$app/navigation";
   let latitude;
   let longitude;
 
@@ -36,8 +37,8 @@
 
 
   const reportHandler = (e) => {
-    const cb = (img_url) => {
-      API.post_incident({
+    const cb = async (img_url) => {
+      await API.post_incident({
         title:     title,
         description: desc,
         category:  category,
@@ -45,7 +46,8 @@
         longitude: longitude,
         latitude:  latitude,
         timestamp: Date.now() 
-      })
+      });
+      goto("/map");
     }
 
     // const file = files[0]; 
