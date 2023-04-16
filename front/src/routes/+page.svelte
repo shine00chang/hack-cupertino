@@ -4,8 +4,8 @@
 
   import * as API from "$lib/api.js";
   import { goto } from "$app/navigation";
-  let latitude;
-  let longitude;
+    import LatLong from "../lib/components/LatLong.svelte";
+  let latitude, longitude;
 
   onMount(() => {
     API.get_location(coords => {
@@ -83,19 +83,7 @@
     </div>
 
     
-    <div>
-      {#if latitude === undefined || longitude === undefined}
-        <div>
-          <div class="w-3 h-3 rounded-full bg-red-600 border border-red-600 inline-block animate-pulse"></div>
-          finding your location...
-        </div>
-      {:else}
-        <div>
-          <div class="w-3 h-3 rounded-full bg-green-600 border border-green-600 inline-block animate-pulse"></div>
-          latitude: {latitude.toFixed(3)}, longitude: {longitude.toFixed(3)}
-        </div>
-      {/if}
-    </div>
+    <LatLong {latitude} {longitude}/>
 
     <button type="submit" class="border rounded-lg py-2 hover:bg-red-600 hover:text-white ease-in-out duration-100">Report</button>
   </form>
