@@ -8,6 +8,11 @@
 
   onMount(() => {
     console.log(navigator);
+    navigator.permissions.query({name: 'geolocation'})
+            // .then((permissionStatus) => {
+
+
+            // });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         console.log(pos);
@@ -24,9 +29,9 @@
       title = title.slice(0, 100);
     }
   }
-  let desc;
-  let category;
-  let files;
+  let desc = "";
+  let category = "none";
+  let files = [];
   let categories = crimes.crimes;
 
 
@@ -43,9 +48,10 @@
       })
     }
 
-    const file = files[0]; 
-    if (file !== undefined) {
-      API.get_img_url(file, cb);
+    // const file = files[0]; 
+    console.log(files)
+    if (files.length >= 1) {
+      API.get_img_url(files[0], cb);
     } else {
       cb();
     }
@@ -60,12 +66,12 @@
 
     <label for="title">
       Title:
-      <input name="title" type="text" bind:value={title} class="border rounded-sm w-full p-1" />
+      <input name="title" type="text" bind:value={title} class="border rounded-sm w-full p-1" required/>
     </label>
 
     <div class="row row-col">
       <label for="desc" class="block">Description:</label>
-      <textarea id="desc" name="text" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+      <textarea id="desc" name="text" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' required
       class="border rounded-sm w-full resize-none p-1" bind:value={desc}></textarea>
     </div>
 
@@ -79,7 +85,7 @@
     </div>
 
     <div>
-      <label for="image">Images</label>
+      <label for="image">Images:</label>
       <input type="file" bind:files accept="image/png, image/jpeg"/>
     </div>
 
@@ -98,7 +104,7 @@
       {/if}
     </div>
 
-    <button type="submit" class="border rounded-sm">Report</button>
+    <button type="submit" class="border rounded-lg py-2 hover:bg-red-600 hover:text-white ease-in-out duration-100">Report</button>
   </form>
 </div>
 
