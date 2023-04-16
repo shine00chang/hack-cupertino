@@ -1,5 +1,19 @@
-//const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
+//const BACKEND_URL = "http://localhost:3000";
+
+export async function fetch_incidents (location) {
+  console.log("Fetching from location: ", location);
+  return await fetch(BACKEND_URL+`/byLocation?longitude=${location.longitude}&latitude=${location.latitude}`)
+    .then(res => res.json())
+    .then(res => {
+      console.log("by location fetch: ", res);
+      return res;
+    })
+    .catch(e => {
+      console.error("error on fetch", e);
+      return [];
+    });
+}
 
 export async function get_img_url(file, cb = () => {}) {
   let file_reader = new FileReader();

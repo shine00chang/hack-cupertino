@@ -1,48 +1,41 @@
 <script>
+    import Map from "$lib/components/Map.svelte";
+    import { onMount } from "svelte";
+    import * as API from "$lib/api.js";
+
     let accidents = [];
+    let loaded = false;
     let la = 37.3;
     let ln = -122.03;
 
-    for (let i = 0; i < 10; i++) {
-        let p = {
-            lat: la+Math.random()/2.0,
-            lng: ln+Math.random()/2.0,
-            desc: "A"
-        }
+    onMount(async() => {
+        accidents = await API.fetch_incidents({longitude: ln, latitude: la});
 
-        accidents.push(p);
-    }
+        console.log(accidents);
+        loaded = true; 
+    });
+    
 
 </script>
 
-<svelte:head>
-    <style>
-        #map {
-        height: 400px;
-        width: 400px;
-        }
-    </style>
-</svelte:head>
-
+<head>
+    <title>HTML div</title>
+</head>
 <body>
-  <p>My Google Maps Demo</p>
-  <div id="map"></div>
-  <script>
-    function initMap() {
-      var test= {lat: 37.3, lng: -122.032};
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        maxZoom: 15,
-        center: test
-      });
-      var marker = new google.maps.Marker({
-        position: test,
-        map: map
-      });
-    }
-  </script>
-  <script async defer
-  src=
-"https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSP-Hux39o-vrRRL-u1LYugk35jPVg1I&callback=initMap">
-  </script>
+    {#if loaded}
+    <div style="width: 47vw; float:left; height:90vh; margin:1vw">
+        {#each accidents as accident}
+            <div style="width: 95%; height: 50px; border-radius: 20px; background-color: silver; margin: 10px; display: block; overflow: auto; text-align: center">
+                <h3>{accident.desc}</h3>
+            </div>
+
+        {/each}
+    </div>
+    <div style="width: 47vw; float:right; height:90vh; margin:1vw">
+        <Map accidents={accidents}/>
+    </div>
+
+    {:else}
+    <p>LOADING...prayge</p>
+    {/if}
 </body>

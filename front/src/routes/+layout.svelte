@@ -4,13 +4,4 @@
 </script>
 
 <Navbar/>
-
-<div id="main">
-    <slot></slot>
-</div>
-
-<style>
-    #main {
-        padding: 6px;
-    }
-</style>
+<slot/>
