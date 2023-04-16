@@ -75,11 +75,7 @@
     
     {#if show && incident !== undefined}
         <div>
-            <div class="border p-2 rounded" style="width: 45vw">
-                <h1 class="text-lg font-bold">{incident.title}</h1>
-                <h3>Time reported: {incident.}</h3>
-                <h3>{incident.description}</h3>
-            </div>
+            <Incident {incident} />
         </div>
     {:else}
         <div id="list" class="flex flex-col gap-3">

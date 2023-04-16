@@ -31,7 +31,7 @@
                 <img src={incident.img_url} alt="" class="w-72 rounded mt-2"/>
             {/if}
             <h3 class="mt-2">Description:</h3>
-            <p>{incident.description}</p>
+            <p style="text-overflow: ellipsis; max-width: 40vw">{incident.description}</p>
         </div>
         
     {/if}
