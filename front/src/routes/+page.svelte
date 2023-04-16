@@ -71,8 +71,8 @@
     <div>
       <label for="categories">Categories:</label>
       <select id="category-input" bind:value={category} name="categories" class="border rounded-sm">
-        {#each categories as category}
-          <option value="">{category}</option>
+        {#each categories as cat}
+          <option value={cat}>{cat}</option>
         {/each}
       </select>
     </div>
