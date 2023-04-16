@@ -1,15 +1,20 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+app.use(express.json());
+app.use(cors());
+
 const controller = require("./controller.js");
+
 
 app.get("/test", (req, res) => { 
   return res.json({"hey": "i just met you"});
 });
 
 app.post("/upload", async (req, res) => {
-  console.log("upload request received, extracted body: ", req.body);
-  let success = await controller.upload(req.body);
-  return res.status(success ? 201 : 406); 
+  console.log("upload request received");
+  const success = await controller.upload(req.body);
+  return res.status(success ? 201 : 406).send(); 
 });
 
 app.get("/by-location", async (req, res) => {
