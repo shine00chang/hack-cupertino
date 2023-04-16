@@ -22,7 +22,7 @@
     }
   }
   let desc = "";
-  let category = "none";
+  let category = "assault";
   let files = [];
   let categories = crimes.crimes;
 
@@ -62,6 +62,10 @@
     <h1 class="text-3xl font-bold">
       Report A Crime
     </h1>
+
+    <noscript>
+      Please enable javascript for the page to work!
+    </noscript>
 
     <label for="title">
       Title:
