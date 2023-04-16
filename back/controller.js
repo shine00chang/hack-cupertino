@@ -1,6 +1,8 @@
+const fetch = require("fetch");
 const firebase = require("./firebase.js");
 const db = firebase.database();
 const incidentsRef = db.ref('incidents');
+require('dotenv').config();
 
 /*schema for uploads
 {
@@ -46,4 +48,26 @@ exports.getByLocation = async (location) => {
   // TODO
   
   return {"lala~": "dada"};
+}
+
+//image is base64 string or something
+exports.uploadImage = async (image) => {
+  let form_data = new URLSearchParams();
+  form_data.append("image", image)
+  let resp 
+  try {
+    resp = await fetch("https://api.imgur.com/3/image", {
+    method: "POST",
+    header: {
+      Authorization: `Client-ID ${process.env.clientId}`
+    },
+    body: form_data
+    });
+    resp = await resp.json();
+    console.log(resp);
+    return resp.data.link;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
 }
