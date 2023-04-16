@@ -1,8 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import * as API from "$lib/api.js";
-
-
+  import { showInfo } from "./stores";
+  import { trackedPos } from "./stores";
+  
   let container;
 	let map;
 
@@ -14,11 +15,11 @@
     if (!navigator.geolocation) {console.error("geolocation not permitted."); return;}
 
     // Initialize map as callback after geolocation
-    let location = { latitude: 37.326, longitude: -122.043 };
+    let location = { latitude: 37.326, longitude: -122.043, radius: 0.0001 };
     let incidents = [];
     await API.get_location(async coords => {
       location = coords;
-      await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}`)
+      await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}&radius=${location.radius}`)
            .then(res => res.json())
            .then(res => {
              console.log("by location fetch: ", res);
@@ -63,6 +64,34 @@
                 },
                 draggable: false
                 });
+
+                marker.addListener("click", () => {
+                    let dummyPos;
+
+                    trackedPos.subscribe(info => {
+                      dummyPos = info;
+                    })
+
+                    //console.log("DUMMY POS", dummyPos.lat, dummyPos.lng);
+                    //console.log(incidents[i].longitude, incidents[i].latitude);
+
+                    if (dummyPos.lat == incidents[i].latitude && dummyPos.lng == incidents[i].longitude) {
+                      //console.log("jere");
+                      showInfo.update(n => !n);
+                    } else {
+                      showInfo.set(true);
+                      trackedPos.set({lat: incidents[i].latitude, lng: incidents[i].longitude});
+                    }
+
+                    let dummyInfo;
+
+                    showInfo.subscribe(info => {
+                      dummyInfo = info;
+                    })
+
+                    console.log(dummyPos);
+                    console.log(dummyInfo);
+                });
             }
            })
            .catch(e => {
@@ -73,26 +102,6 @@
      
       console.log(incidents);
       console.log(incidents.length);
-     
-
-
-//       for (let i = 0; i < accidents.length; i++) {
-//               console.log({lat: accidents[i].latitude, lng: accidents[i].longitude});
-//               var marker = new google.maps.Marker({
-//                 position: {lat: accidents[i].latitude, lng: accidents[i].longitude},
-//                 map: map,
-//                 icon: {
-//                     anchor: google.maps.Point(item.location.latitude, item.location.longitude),
-//                     path: google.maps.SymbolPath.CIRCLE,
-//                     fillColor: "red",
-//                     fillOpacity: 2, 
-//                     strokeWeight: 1,
-//                     rotation: 0,
-//                     scale: 6
-//                 },
-//                 draggable: false
-//               });
-// }
     });
 
 

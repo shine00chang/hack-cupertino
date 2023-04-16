@@ -20,9 +20,9 @@ export function get_location (setter) {
     }
   }
 
-export async function fetch_incidents (location) {
+export async function fetch_incidents (location, radius) {
   console.log("Fetching from location: ", location);
-  return await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}`)
+  return await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}&radius=${radius}`)
     .then(res => res.json())
     .then(res => {
       console.log("by location fetch: ", res);
