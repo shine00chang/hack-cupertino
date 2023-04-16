@@ -2,7 +2,6 @@
     import Map from "$lib/components/Map.svelte";
     import { onMount } from "svelte";
     import * as API from "$lib/api.js";
-    import {Accordion, AccordionItem} from "svelte-collapsible"
 
     let accidents = [];
     let loaded = false;
@@ -30,15 +29,15 @@
     {#if loaded}
 
     <style>
-        @media (max-width: 767px) {
+        @media (max-width: 900px) {
           #hidden-mobile {
             display: none;
           }
         }
         
-        @media (max-width: 767px) {
+        @media (max-width: 700px) {
             #expand-mobile {
-                min-width: 100vh
+                min-width: 90vh
             }
         }
       </style>
