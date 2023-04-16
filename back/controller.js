@@ -1,4 +1,4 @@
-const fetch = require("fetch");
+const { fetch } = require("node-fetch");
 const firebase = require("./firebase.js");
 const db = firebase.database();
 const incidentsRef = db.ref('incidents');
