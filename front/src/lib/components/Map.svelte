@@ -44,7 +44,6 @@
           for (let i = 0; i < accidents.length; i++) {
               console.log({lat: accidents[i].latitude, lng: accidents[i].longitude});
               var marker = new google.maps.Marker({
-                //position: {lat: 37, lng: -122},
                 position: {lat: accidents[i].latitude, lng: accidents[i].longitude},
                 map: map
               });
