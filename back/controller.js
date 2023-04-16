@@ -83,7 +83,7 @@ exports.getByLocation = async (query) => {
   if (location === false) return false;
   console.log(location);
   const result = []; 
-  const D = 5;
+  const D = query.radius ? query.radius : 1;
   // Sort & Filter by Longitude
   // - For each
   //   - Filter by Latitude
