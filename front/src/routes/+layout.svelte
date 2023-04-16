@@ -5,4 +5,12 @@
 
 <Navbar/>
 
-<slot></slot>
+<div id="main">
+    <slot></slot>
+</div>
+
+<style>
+    #main {
+        padding: 6px;
+    }
+</style>

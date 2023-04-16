@@ -24,6 +24,9 @@
     "assassination",
     "terrorism",
     "kidnapping",
-    "disturbing the peace"
+    "disturbing the peace",
+    "pickpocketing",
+    "drug trafficking",
+    "other"
   ]
 }
