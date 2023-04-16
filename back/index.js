@@ -7,8 +7,8 @@ app.get("/test", (req, res) => {
 });
 
 app.post("/upload", (req, res) => {
-  console.log("upload request received, extracted body: ", body);
-  controller.upload(body);
+  console.log("upload request received, extracted body: ", req.body);
+  controller.upload(req.body);
   return res.status(201); 
 });
 
