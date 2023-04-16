@@ -23,6 +23,8 @@
 
     onMount(async () => {
       API.get_location(async coords => {
+        latitude = coords.latitude;
+        longitude = coords.longitude;
         incidents = await API.fetch_incidents(coords);
       });
 
@@ -67,36 +69,33 @@
       padding-left: 100px;
     }
   }
-  
 </style>
 
+
+{#if latitude === undefined || longitude === undefined}
+<div class="w-full h-screen bg-slate-200 flex flex-row justify-center">
+  <div class="flex flex-col mt-72 text-2xl animate-bounce">
+    Loading...
+  </div>
+</div>
+{:else}
 <div class="flex flex-row gap-24 m-5">
     
-    
-    {#if show && incident !== undefined}
-        <div>
-            <div class="border p-2 rounded" style="width: 45vw">
-                <h1 class="text-lg font-bold">{incident.title}</h1>
-                <h3>Time reported: {incident.}</h3>
-                <h3>{incident.description}</h3>
-            </div>
-        </div>
-    {:else}
-        <div id="list" class="flex flex-col gap-3">
-            <h1 class="text-2xl font-bold">
-                Incidents
-            </h1>
-            {#each incidents as incident}
-                <Incident {incident}/>
-            {/each}
-        </div>
-    {/if}
-   <div id="map" class="flex flex-col gap-2 fixed right-8">
+  <div id="list" class="flex flex-col gap-3">
     <h1 class="text-2xl font-bold">
-      Map
+      Incidents
     </h1>
-      <App ready={true}/>
-        <!-- <Map/> -->
-        <LatLong {longitude} {latitude}/>
-    </div>
+    {#each incidents as incident}
+      <Incident {incident}/>
+    {/each}
+  </div>
+ <div id="map" class="flex flex-col gap-2 fixed right-8">
+  <h1 class="text-2xl font-bold">
+    Map
+  </h1>
+    <App ready={true}/>
+      <LatLong {longitude} {latitude}/>
+  </div>
 </div>
+  {/if}
+    
