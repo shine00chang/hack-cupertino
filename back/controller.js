@@ -38,8 +38,8 @@ function validateIncident(body) {
 }
 
 function validateLocation(query) {
-  if (typeof parseInt(query.longitude) !== "number") {console.error("no longitude"); return false;}
-  if (typeof parseInt(query.latitude)  !== "number") {console.error("no latitude "); return false;}
+  if (isNaN(parseInt(query.longitude))) {console.error("no longitude"); return false;}
+  if (isNaN(parseInt(query.latitude))) {console.error("no latitude "); return false;}
   return { 
     longitude: parseInt(query.longitude),
     latitude:  parseInt(query.latitude),
@@ -83,7 +83,9 @@ exports.getByLocation = async (query) => {
   if (location === false) return false;
   console.log(location);
   const result = []; 
-  const D = 5;
+  let D = query.radius ? Number(query.radius) : 1;
+  //invalid radius 
+  if (isNaN(D)) D = 1;
   // Sort & Filter by Longitude
   // - For each
   //   - Filter by Latitude

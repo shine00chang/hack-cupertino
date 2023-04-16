@@ -3,7 +3,15 @@
     import ShinePolice from "$lib/imgs/shinepolice.gif";
     import ShinePolicemen from "$lib/imgs/shinepolicemen.png";
     
-    let shine_titles = ["hello o_o", "hows it going", "assault is the threat to inflict physical harm, while the battery is the actual harm", "cupertino has 4 twin cities"];
+    let shine_titles = [
+        "hello o_o",
+        "hows it going",
+        "yeehaw",
+        "assault is the threat to inflict physical harm, while the battery is the actual harm",
+        "cupertino has 4 twin cities",
+        "the permanente limestone quarry just outside of cupertino is the reason for the railroad through the city",
+        "safe jaywalking is no longer a fineable offense in california"
+    ];
     let shine_title = "hello o_o";
     setInterval(function() {
         shine_title = shine_titles[Math.floor(Math.random() * shine_titles.length)];
