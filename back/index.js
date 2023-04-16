@@ -3,7 +3,9 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 
 const controller = require("./controller.js");
 
@@ -13,8 +15,9 @@ app.get("/test", (req, res) => {
 
 app.post('/image', async (req, res) => {
   if (!req.body.image) return res.status(500).send();
-
-  let image_url = controller.uploadImage(req.body.image);
+  //req.body.image should be b64 image or something
+  let image_url = await controller.uploadImage(req.body.image);
+  console.log(image_url)
   return !image_url ? res.status(500).send() : res.status(200).json({"image_url": image_url});
 });
 

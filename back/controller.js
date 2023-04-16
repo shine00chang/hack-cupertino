@@ -1,4 +1,4 @@
-const { fetch } = require("node-fetch");
+const fetch = require("node-fetch");
 const firebase = require("./firebase.js");
 const db = firebase.database();
 const incidentsRef = db.ref('incidents');
@@ -110,7 +110,7 @@ exports.uploadImage = async (image) => {
   form_data.append("image", image)
   return await fetch("https://api.imgur.com/3/image", {
       method: "POST",
-      header: {
+      headers: {
         Authorization: `Client-ID ${process.env.clientId}`
       },
       body: form_data
