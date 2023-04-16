@@ -1,16 +1,6 @@
 <script>
-    import { onMount } from "svelte";
-
-    onMount(async() => {
-
-    });
-
-    //export let accidents = await API.magic();
-    export let accidents;
+    export var accidents; 
 </script>
-
-
-
 
 <svelte:head>
     <style>
@@ -26,7 +16,7 @@
   <div id="map"></div>
 
     <script>
-    function initMap() {
+        const loadMap = () => {
         var map;
 
         var test= {lat: 37.3, lng: -122.032};
@@ -35,20 +25,6 @@
                 maxZoom: 15,
                 center: test
         });
-        
-        let accidents = [];
-        let la = 37.3;
-        let ln = -122.03;
-
-        for (let i = 0; i < 10; i++) {
-            let p = {
-                lat: la+Math.random()/2.0,
-                lng: ln+Math.random()/2.0,
-                desc: "A"
-            }
-
-            accidents.push(p);
-        }
 
 
         for (let i = 0; i < accidents.length; i++) {
@@ -60,7 +36,9 @@
         }
 
     }  
-    
+
+    function initMap() {loadMap();} 
+
     </script>
 
     <script async defer

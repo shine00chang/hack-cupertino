@@ -1,5 +1,5 @@
-//const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
+//const BACKEND_URL = "http://localhost:3000";
 
 export async function fetch_incidents (location) {
   console.log("Fetching from location: ", location);
