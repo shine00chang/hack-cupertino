@@ -44,15 +44,11 @@
 
     <div style="width: 47vw; float:left; height:90vh; margin:1vw" id="hidden-mobile">
         {#each accidents as accident}
-            <Accordion>
                 {#each accidents as accident}
-                    <AccordionItem key={accident.key}>
                         <div style="width: 95%; height: 50px; border-radius: 20px; background-color: silver; margin: 10px; display: block; overflow: auto; text-align: center">
                             <h3>{accident.desc}</h3>
                         </div>
-                    </AccordionItem>
                 {/each}
-            </Accordion>
         {/each}
     </div>
     <div style="width: 47vw; float:right; height:90vh; margin:1vw" id="expand-mobile">
