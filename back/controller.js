@@ -19,6 +19,9 @@ require('dotenv').config();
 function validateIncident(body) {
   if (typeof body.category !== "string")    {console.error("no category"); return false;}
   if (typeof body.img_url !== "string" && typeof body.img_url !== "undefined") {console.error("invalid img_url"); return false;}
+  if (body.img_url === undefined) {
+    body.img_url = "";
+  }
   if (typeof body.description !== "string") {console.error("no description"); return false;}
   if (typeof body.timestamp !== "number")   {console.error("no timestamp"  ); return false;}
   if (typeof body.longitude !== "number" || typeof body.latitude !== "number") {console.error("no lat or lon");   return false;}
