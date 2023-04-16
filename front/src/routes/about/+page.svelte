@@ -1,6 +1,7 @@
 <script>
     import TeamPic from "$lib/imgs/teampic.jpeg";
     import ShinePolice from "$lib/imgs/shinepolice.gif";
+    import ShinePolicemen from "$lib/imgs/shinepolicemen.png";
 </script>
 
 <div class="flex flex-row justify-center mt-10" id="about">
@@ -24,6 +25,7 @@
     </div>
     <div class="print-show">
         <p>We were hired by HP to waste your ink</p>
+        <img src={ShinePolicemen} alt="shine police line"/>
     </div>
 </div>
 

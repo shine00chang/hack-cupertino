@@ -95,10 +95,10 @@ exports.getByLocation = async (query) => {
     .once("value")
     .then(async snapshot => {
       const incidents = snapshot.val();
-      console.log(incidents);  
+      //console.log(incidents);  
       const result = [];
       for (let id in incidents) {
-        console.log(incidents[id]);
+        //console.log(incidents[id]);
         if (incidents[id].latitude > location.latitude - D &&
             incidents[id].latitude < location.latitude + D)
           result.push(incidents[id]); 
