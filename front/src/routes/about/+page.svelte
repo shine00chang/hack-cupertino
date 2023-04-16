@@ -2,6 +2,12 @@
     import TeamPic from "$lib/imgs/teampic.jpeg";
     import ShinePolice from "$lib/imgs/shinepolice.gif";
     import ShinePolicemen from "$lib/imgs/shinepolicemen.png";
+    
+    let shine_titles = ["hello o_o", "hows it going", "assault is the threat to inflict physical harm, while the battery is the actual harm", "cupertino has 4 twin cities"];
+    let shine_title = "hello o_o";
+    setInterval(function() {
+        shine_title = shine_titles[Math.floor(Math.random() * shine_titles.length)];
+    }, 5000);
 </script>
 
 <svelte:head>
@@ -24,7 +30,7 @@
             {"The frontend was made using Svelte and Tailwind, while backend was a Express.js server connected to a Firebase backend. We also used the geolocation, Imgur, and Google Maps APIs."}
         </p>
         <div id="shinebhar">
-            <img id="shine-img" src={ShinePolice} alt="shine flashing police gif"/>
+            <img id="shine-img" title={shine_title} src={ShinePolice} alt="shine flashing police gif"/>
         </div>
     </div>
     <div class="print-show">
