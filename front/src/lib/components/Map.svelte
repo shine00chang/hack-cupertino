@@ -12,7 +12,7 @@
 </svelte:head>
 
 <body>
-  <p>Marked Crimes</p>
+  <center><h3>Marked Crimes</h3></center>
   <div id="map"></div>
 
     <script>
