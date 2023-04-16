@@ -32,7 +32,8 @@ function validateIncident(body) {
     img_url:  body.img_url,
     description: body.description,
     longitude: body.longitude,
-    latitude:  body.latitude
+    latitude:  body.latitude,
+    timestamp: body.timestamp
   };
 }
 
