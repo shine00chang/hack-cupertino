@@ -8,19 +8,10 @@
   let longitude;
 
   onMount(() => {
-    console.log(navigator);
-    navigator.permissions.query({name: 'geolocation'})
-            // .then((permissionStatus) => {
-
-
-            // });
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        console.log(pos);
-        latitude = pos.coords.latitude;
-        longitude = pos.coords.longitude;
-      }); 
-    }
+    API.get_location(coords => {
+      latitude = coords.latitude;
+      longitude = coords.longitude;
+    });
   });
 
   let title;

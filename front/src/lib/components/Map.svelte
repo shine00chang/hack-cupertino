@@ -15,13 +15,17 @@
   <div id="map"></div>
 
     <script>
-        async function initMap () {
-          const BACKEND_URL = "http://localhost:3000";
-          const location = {
-            latitude: 37,
-            longitude: -121
-          };
-        
+      async function initMap () {
+        //const BACKEND_URL = "http://localhost:3000";
+        const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
+        navigator.permissions.query({name: 'geolocation'})
+                // .then((permissionStatus) => {});
+        if (!navigator.geolocation) {console.error("geolocation not permitted."); return;}
+
+        // Initialize map as callback after geolocation
+        navigator.geolocation.getCurrentPosition(async pos => {
+          const location = pos.coords; 
+
           var accidents = await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}`)
             .then(res => res.json())
             .then(res => {
@@ -37,9 +41,8 @@
           var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 10,
               maxZoom: 15,
-              center: {lat: 37, lng: -122} 
+              center: location  
           });
-        
         
           for (let i = 0; i < accidents.length; i++) {
               console.log({lat: accidents[i].latitude, lng: accidents[i].longitude});
@@ -48,6 +51,7 @@
                 map: map
               });
           }
+        }); 
       }  
     </script>
 

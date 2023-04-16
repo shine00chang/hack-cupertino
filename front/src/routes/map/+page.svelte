@@ -6,7 +6,9 @@
 
     let accidents = [];
     onMount(async () => {
-      accidents = await API.fetch_incidents({latitude: 37, longitude: -121});
+      API.get_location(async coords => {
+        accidents = await API.fetch_incidents(coords);
+      });
     });
 </script>
 

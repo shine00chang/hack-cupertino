@@ -1,6 +1,25 @@
 const BACKEND_URL = "https://cupertino-hacks.the-yiga.repl.co";
 //const BACKEND_URL = "http://localhost:3000";
 
+export function get_location (setter) {
+    console.log(navigator);
+    if (navigator === undefined) {
+      console.error("get_location() must be called in onMount()"); 
+      return undefined;
+    }
+    navigator.permissions.query({name: 'geolocation'})
+            // .then((permissionStatus) => {
+
+
+            // });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        console.log(pos);
+        setter(pos.coords);
+      }); 
+    }
+  }
+
 export async function fetch_incidents (location) {
   console.log("Fetching from location: ", location);
   return await fetch(BACKEND_URL+`/by-location?longitude=${location.longitude}&latitude=${location.latitude}`)
