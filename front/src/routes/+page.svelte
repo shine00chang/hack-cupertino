@@ -51,6 +51,12 @@
   };
 </script>
 
+<svelte:head>
+  <title>Report - Main Page</title>
+  <meta name="description" content="Report incidents, and learn about safety in your community.">
+  <meta name="keywords" content="Community, Safety, Crime,, Report">
+</svelte:head>
+
 <div class="flex flex-row justify-center my-10">
   <form on:submit|preventDefault={reportHandler} class="flex flex-col w-96 border rounded p-5 gap-4">
     <h1 class="text-3xl font-bold">

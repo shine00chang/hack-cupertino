@@ -17,6 +17,13 @@
     });
 </script>
 
+<svelte:head>
+  <title>Map</title>
+</svelte:head>
+
+<head>
+    <title>HTML div</title>
+</head>
 <body>
     <style>
         @media (max-width: 800px) {

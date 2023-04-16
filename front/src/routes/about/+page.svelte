@@ -4,6 +4,10 @@
     import ShinePolicemen from "$lib/imgs/shinepolicemen.png";
 </script>
 
+<svelte:head>
+  <title>About</title>
+</svelte:head>
+
 <div class="flex flex-row justify-center mt-10" id="about">
     <div id="container" class="flex flex-col border rounded-lg p-7 px-20 w-96 gap-3 content-center bg-slate-200">
         <h1 class="text-3xl font-bold">
@@ -15,6 +19,9 @@
         </p>
         <p>
             {"We made this project with the goal of helping spread awareness of problems in communities, in a transparent way."}
+        </p>
+        <p>
+            {"The frontend was made using Svelte and Tailwind, while backend was a Express.js server connected to a Firebase backend. We also used the geolocation, Imgur, and Google Maps APIs."}
         </p>
         <div id="shinebhar">
             <img id="shine-img" src={ShinePolice} alt="shine flashing police gif"/>
