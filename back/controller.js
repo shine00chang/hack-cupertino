@@ -1,4 +1,6 @@
 const firebase = require("./firebase.js");
+const db = firebase.database();
+const incidentsRef = db.refs('incidents');
 
 /*schema for uploads
 {
@@ -34,10 +36,13 @@ function validateBody(body) {
 exports.upload = async (body) => {
   console.log("controller fetch() called.");
   body = validateBody(body);
+  if (body === false) return undefined;
   // TODO
 }
 
 exports.getByLocation = async (location) => {
   console.log("controller getByLocation() called.");
   // TODO
+  
+  return {"lala~", "dada"};
 }

@@ -8,8 +8,8 @@ app.get("/test", (req, res) => {
 
 app.post("/upload", async (req, res) => {
   console.log("upload request received, extracted body: ", req.body);
-  let _success = await controller.upload(req.body);
-  return res.status(201); 
+  let success = await controller.upload(req.body);
+  return res.status(success ? 201 : 406); 
 });
 
 app.get("/by-location", async (req, res) => {
