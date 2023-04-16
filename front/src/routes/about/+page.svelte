@@ -18,9 +18,6 @@
         </p>
         <div id="shinebhar">
             <img id="shine-img" src={ShinePolice} alt="shine flashing police gif"/>
-            <p>
-                {"\"I'm a kitten! kawaii!!!!\" - Bhargav"}
-            </p>
         </div>
     </div>
     <div class="print-show">
