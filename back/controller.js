@@ -31,13 +31,13 @@ function validateBody(body) {
   };
 }
 
-exports.upload = (body) => {
+exports.upload = async (body) => {
   console.log("controller fetch() called.");
   body = validateBody(body);
   // TODO
 }
 
-exports.getByLocation = (location) => {
+exports.getByLocation = async (location) => {
   console.log("controller getByLocation() called.");
   // TODO
 }

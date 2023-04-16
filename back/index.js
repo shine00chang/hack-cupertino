@@ -8,14 +8,14 @@ app.get("/test", (req, res) => {
 
 app.post("/upload", (req, res) => {
   console.log("upload request received, extracted body: ", req.body);
-  controller.upload(req.body);
+  let _success = await controller.upload(req.body);
   return res.status(201); 
 });
 
 app.get("/by-location", (req, res) => {
   console.log("get by location requested, still dummy tho.");
   const location = { lat: 32, lon: -121};
-  controller.getByLocation(location);
+  let _results = await controller.getByLocation(location);
   return res.json({"compton": "average gang violence"});
 });
 
