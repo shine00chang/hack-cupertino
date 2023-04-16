@@ -1,53 +1,75 @@
+<svelte:head>
+    <script defer async
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSP-Hux39o-vrRRL-u1LYugk35jPVg1I&callback=initMap">
+    </script>
+
+  <title>Map</title>
+</svelte:head>
+
 <script>
     import Map from "$lib/components/Map.svelte";
     import { onMount } from 'svelte';
     import {Accordion, AccordionItem} from "svelte-collapsible"
     import * as API from "$lib/api.js";
     import LatLong from "../../lib/components/LatLong.svelte";
+    import Incident from "../../lib/components/Incident.svelte";
+    import App from "./App.svelte";
 
-    let accidents = [];
+    let incidents = [];
     let latitude, longitude;
 
     onMount(async () => {
       API.get_location(async coords => {
         latitude = coords.latitude;
         longitude = coords.longitude;
-        accidents = await API.fetch_incidents(coords);
+        incidents = await API.fetch_incidents(coords);
+      });
+
+      const app = new App({
+        target: document.getElementById("map"),
+        props: {
+          ready: false,
+        }
       });
     });
+
 </script>
 
-<svelte:head>
-  <title>Map</title>
-</svelte:head>
+<style>
+  #list {
+    width: 40vw;
+  }
 
-<head>
-    <title>HTML div</title>
-</head>
-<body>
-    <style>
-        @media (max-width: 800px) {
-          #hidden-mobile {
-            display: none;
-          }
-        }
-        
-        @media (max-width: 790px) {
-            #expand-mobile {
-                min-width: 90vh
-            }
-        }
-      </style>
+  @media (max-width: 800px) {
+    #list {
+      display: none;
+    }
 
-    <div style="width: 47vw; float:left; height:90vh; margin:1vw" id="hidden-mobile">
-        {#each accidents as accident}
-          <div style="width: 95%; height: 50px; border-radius: 20px; background-color: silver; margin: 10px; display: block; overflow: auto; text-align: center">
-              <h3>{accident.desc}</h3>
-          </div>
-        {/each}
+    #map {
+      width: 100vw;
+      right: -2px;
+      padding-left: 100px;
+    }
+  }
+  
+</style>
+
+<div class="flex flex-row gap-24 m-5">
+    
+    <div id="list" class="flex flex-col gap-3">
+      <h1 class="text-2xl font-bold">
+        Incidents
+      </h1>
+      {#each incidents as incident}
+        <Incident {incident}/>
+      {/each}
     </div>
-   <div style="width: 47vw; float:right; height:90vh; margin:1vw" id="expand-mobile">
-        <Map/>
+   <div id="map" class="flex flex-col gap-2 fixed right-8">
+    <h1 class="text-2xl font-bold">
+      Map
+    </h1>
+      <App ready={true}/>
+        <!-- <Map/> -->
         <LatLong {longitude} {latitude}/>
     </div>
-</body>
+</div>
