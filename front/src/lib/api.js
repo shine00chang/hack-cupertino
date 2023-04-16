@@ -24,7 +24,7 @@ export function get_img_url(file, cb = () => {}) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({image: file_reader.result.replace("data:image/png;base64,", "")}) 
+      body: JSON.stringify({image: file_reader.result.replace("data:image/png;base64,", "").replace("data:image/jpeg;base64,", "").replace("data:image/jpg;base64,", "")}) 
     });
 
     resp = await resp.json();
