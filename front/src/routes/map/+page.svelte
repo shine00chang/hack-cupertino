@@ -1,5 +1,6 @@
 <script>
     import Map from "$lib/components/Map.svelte";
+    import {Accordion, AccordionItem} from "svelte-collapsible"
     import { onMount } from "svelte";
     import * as API from "$lib/api.js";
 
@@ -18,16 +19,12 @@
         console.log(accidents);
         loaded = true; 
     });
-    
-
 </script>
 
 <head>
     <title>HTML div</title>
 </head>
 <body>
-    {#if loaded}
-
     <style>
         @media (max-width: 800px) {
           #hidden-mobile {
@@ -49,11 +46,7 @@
                         </div>
         {/each}
     </div>
-    <div style="width: 47vw; float:right; height:90vh; margin:1vw" id="expand-mobile">
-        <Map accidents={accidents}/>
+   <div style="width: 47vw; float:right; height:90vh; margin:1vw" id="expand-mobile">
+        <Map/>
     </div>
-
-    {:else}
-    <p>LOADING...prayge</p>
-    {/if}
 </body>
