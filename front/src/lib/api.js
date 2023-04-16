@@ -29,7 +29,7 @@ export function get_img_url(file, cb = () => {}) {
 
     resp = await resp.json();
     console.log(resp);
-    cb(resp);
+    cb(resp.image_url);
   }; 
 }
 
