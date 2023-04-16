@@ -17,7 +17,7 @@
         left: 0;
         bottom: 0;
         width: 1px;
-        transition: width 0.6s ease;
+        transition: width 0.6s ease, border 0.6s ease;
     }
     a:hover:after {
         width: 100%;

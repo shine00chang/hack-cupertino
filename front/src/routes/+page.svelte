@@ -17,7 +17,14 @@
     }
   });
 
-  let title, desc;
+  let title;
+  $: {
+    if (title) {
+      //title cannot be more than 100 chars
+      title = title.slice(0, 100);
+    }
+  }
+  let desc;
   let category;
   let files;
   let categories = crimes.crimes;
@@ -64,7 +71,7 @@
 
     <div>
       <label for="categories">Categories:</label>
-      <select bind:value={category} name="categories" class="border rounded-sm">
+      <select id="category-input" bind:value={category} name="categories" class="border rounded-sm">
         {#each categories as category}
           <option value="">{category}</option>
         {/each}
@@ -96,7 +103,11 @@
 </div>
 
 <style>
+  #category-input {
+    padding-left: 3px;
+  }
   #desc {
     resize: none;
+    max-height: 230px;
   }
 </style>

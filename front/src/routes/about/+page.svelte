@@ -3,7 +3,7 @@
     import ShinePolice from "$lib/imgs/shinepolice.gif";
 </script>
 
-<div class="flex flex-row justify-center mt-10">
+<div class="flex flex-row justify-center mt-10" id="about">
     <div id="container" class="flex flex-col border rounded-lg p-7 px-20 w-96 gap-3 content-center bg-slate-200">
         <h1 class="text-3xl font-bold">
             About
@@ -13,7 +13,7 @@
             {"Team Gradient: Daniel Cui, Bhargav Eranki, Shine Chang, Taisei De La Cruz"}
         </p>
         <div id="shinebhar">
-            <img src={ShinePolice} alt="shine flashing police gif"/>
+            <img id="shine-img" src={ShinePolice} alt="shine flashing police gif"/>
             <p>
                 {"\"I'm a kitten! kawaii!!!!\" - Bhargav"}
             </p>
@@ -26,6 +26,13 @@
 
 
 <style>
+    #about {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #shine-img {
+        width: 20%;
+    }
     .print-show {
         display: none;
     }
